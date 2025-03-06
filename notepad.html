@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advance Picking Ecommerce Dubai Mall</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      padding: 20px;
+      font-family: 'Poppins', sans-serif;
+      position: relative;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    }
+    h1 {
+      color: #333;
+      text-align: center;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+    .form-label {
+      font-weight: 500;
+      color: #555;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #007bff, #0056b3);
+      border: none;
+      color: white;
+      font-weight: 500;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+    }
+    .btn-success {
+      background: linear-gradient(135deg, #28a745, #218838);
+      border: none;
+      color: white;
+      font-weight: 500;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn-success:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+    }
+    .btn-danger {
+      background: linear-gradient(135deg, #dc3545, #c82333);
+      border: none;
+      color: white;
+      font-weight: 500;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn-danger:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
+    }
+    .btn-warning {
+      background: linear-gradient(135deg, #ffc107, #e0a800);
+      border: none;
+      color: white;
+      font-weight: 500;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn-warning:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 193, 7, 0.3);
+    }
+    .btn-non-halal {
+      background: linear-gradient(135deg, #dc3545, #c82333);
+      border: none;
+      color: white;
+      font-weight: 500;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn-non-halal:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
+    }
+    .table {
+      margin-top: 20px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    .table th {
+      background: linear-gradient(135deg, #007bff, #0056b3);
+      color: white;
+      font-weight: 500;
+    }
+    .table-striped tbody tr:nth-of-type(odd) {
+      background-color: rgba(0, 123, 255, 0.05);
+    }
+    .hidden {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .scrollable-dropdown {
+      max-height: 200px;
+      overflow-y: auto;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 10px;
+      margin-top: 10px;
+      background-color: white;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .scrollable-dropdown.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .location-option {
+      display: block;
+      padding: 8px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.2s ease;
+    }
+    .location-option:hover {
+      background-color: #f1f1f1;
+    }
+    .selected-locations {
+      margin-top: 10px;
+      font-weight: 500;
+      color: #555;
+    }
+    .credit {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      font-size: 12px;
+      color: #fff;
+    }
+    .fade-in {
+      animation: fadeIn 0.5s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .view-orders-page {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 20px;
+      overflow-y: auto;
+      z-index: 1000;
+    }
+    .view-orders-page h2 {
+      color: #333;
+      text-align: center;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+    .view-orders-page .btn-return-home {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container fade-in">
+    <h1>Advance Picking Ecommerce Dubai Mall</h1>
+    <!-- Date Selection Page -->
+    <div id="dateSelectionPage">
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <label for="pickingDate" class="form-label">Select Picking Date:</label>
+          <input type="date" id="pickingDate" class="form-control" required>
+          <button id="proceedButton" class="btn btn-success mt-3">
+            <i class="fas fa-arrow-right"></i> Proceed
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Order Recording Page -->
+    <div id="orderRecordingPage" class="hidden">
+      <form id="orderForm" class="mb-4">
+        <div class="row">
+          <div class="col-md-3">
+            <label for="orderNumber" class="form-label">Order Number:</label>
+            <!-- Changed input type to "number" to accept only numeric values -->
+            <input type="number" id="orderNumber" class="form-control" required>
+          </div>
+          <div class="col-md-3">
+            <label for="timeSlot" class="form-label">Time Slot:</label>
+            <select id="timeSlot" class="form-select" required>
+              <option value="8-10">8-10</option>
+              <option value="10-12">10-12</option>
+              <option value="12-2">12-2</option>
+              <option value="1-3">1-3</option>
+              <option value="3-5">3-5</option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <label class="form-label">Dispatched Location:</label>
+            <div>
+              <button type="button" class="btn btn-outline-primary btn-sm" id="ambientButton">
+                <i class="fas fa-sun"></i> Ambient
+              </button>
+              <button type="button" class="btn btn-outline-primary btn-sm" id="chillerButton">
+                <i class="fas fa-snowflake"></i> Chiller
+              </button>
+              <button type="button" class="btn btn-outline-primary btn-sm" id="frozenButton">
+                <i class="fas fa-icicles"></i> Frozen
+              </button>
+              <button type="button" class="btn btn-non-halal btn-sm" id="nonHalalButton">
+                <i class="fas fa-ban"></i> Non-Halal
+              </button>
+            </div>
+            <div id="locationDropdown" class="scrollable-dropdown hidden">
+              <!-- Location options will be dynamically added here -->
+            </div>
+            <div class="selected-locations">
+              Selected Locations: <span id="selectedLocationsDisplay"></span>
+            </div>
+            <input type="hidden" id="dispatchedLocation" name="dispatchedLocation">
+          </div>
+          <div class="col-md-3">
+            <label for="notes" class="form-label">Notes:</label>
+            <textarea id="notes" class="form-control" rows="3"></textarea>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-12">
+            <button type="submit" class="btn btn-success">
+              <i class="fas fa-save"></i> Record Order
+            </button>
+            <button type="button" id="returnHomeButton" class="btn btn-primary">
+              <i class="fas fa-home"></i> Return to Home
+            </button>
+            <button type="button" id="viewOrdersButton" class="btn btn-info">
+              <i class="fas fa-list"></i> View Orders
+            </button>
+            <button type="button" id="exportExcelButton" class="btn btn-danger">
+              <i class="fas fa-file-excel"></i> Export to Excel
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- View Orders Page -->
+  <div id="viewOrdersPage" class="view-orders-page hidden">
+    <div class="container">
+      <h2>Saved Orders for <span id="viewPickingDateDisplay"></span></h2>
+      <button id="returnHomeFromViewButton" class="btn btn-primary btn-return-home">
+        <i class="fas fa-home"></i> Return to Home
+      </button>
+      <table id="viewOrderTable" class="table table-striped">
+        <thead>
+          <tr>
+            <th>Order Number</th>
+            <th>Time Slot</th>
+            <th>Dispatched Location</th>
+            <th>Notes</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Orders will be displayed here -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Credit to A A S H I K -->
+  <div class="credit">
+    Developed by A A S H I K
+  </div>
+
+  <!-- SheetJS for Excel export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
+
+  <script>
+    // Load saved orders from localStorage when the page loads
+    let savedOrders = JSON.parse(localStorage.getItem('orders')) || {};
+    let currentPickingDate = null;
+
+    // Define Ambient location ranges
+    const ambientRanges = [
+      { start: 100, end: 120 },
+      { start: 200, end: 220 },
+      { start: 300, end: 320 },
+      { start: 400, end: 420 },
+      { start: 500, end: 520 },
+      { start: 600, end: 620 }
+    ];
+
+    // Generate Ambient locations from the ranges
+    const ambientLocations = [];
+    ambientRanges.forEach(range => {
+      for (let i = range.start; i <= range.end; i++) {
+        ambientLocations.push(`RS${String(i).padStart(4, '0')}`);
+      }
+    });
+
+    // Define location options for each category
+    const locationOptions = {
+      Ambient: ambientLocations,
+      Chiller: Array.from({ length: 16 }, (_, i) => `CH${String(i + 1).padStart(2, '0')}`),
+      Frozen: Array.from({ length: 16 }, (_, i) => `FR${String(i + 1).padStart(2, '0')}`),
+      NonHalal: ['PC01', 'PF02']
+    };
+
+    // Track selected locations
+    let selectedLocations = [];
+
+    // Function to show location dropdown
+    function showLocationDropdown(category) {
+      const dropdown = document.getElementById('locationDropdown');
+      dropdown.innerHTML = '';
+
+      if (category === 'Ambient') {
+        // Group Ambient locations by their defined range
+        dropdown.innerHTML = ambientRanges.map(range => {
+          const start = `RS${String(range.start).padStart(4, '0')}`;
+          const end = `RS${String(range.end).padStart(4, '0')}`;
+          const groupOptions = [];
+          for (let i = range.start; i <= range.end; i++) {
+            groupOptions.push(`RS${String(i).padStart(4, '0')}`);
+          }
+          return `
+            <div class="location-group">
+              <div class="location-group-header" onclick="toggleGroup(this)">
+                <i class="fas fa-chevron-down"></i> ${start} - ${end}
+              </div>
+              <div class="location-group-options hidden">
+                ${groupOptions.map(location => `<div class="location-option" data-location="${location}">${location}</div>`).join('')}
+              </div>
+            </div>
+          `;
+        }).join('');
+      } else {
+        dropdown.innerHTML = locationOptions[category].map(location => `
+          <div class="location-option" data-location="${location}">${location}</div>
+        `).join('');
+      }
+
+      dropdown.classList.remove('hidden');
+      setTimeout(() => dropdown.classList.add('visible'), 10);
+    }
+
+    // Function to toggle location group visibility
+    function toggleGroup(header) {
+      const options = header.nextElementSibling;
+      options.classList.toggle('hidden');
+      const icon = header.querySelector('i');
+      icon.classList.toggle('fa-chevron-down');
+      icon.classList.toggle('fa-chevron-up');
+    }
+
+    // Function to handle location selection
+    function handleLocationSelection(location) {
+      if (selectedLocations.includes(location)) {
+        selectedLocations = selectedLocations.filter(loc => loc !== location);
+      } else {
+        selectedLocations.push(location);
+      }
+      document.getElementById('selectedLocationsDisplay').textContent = selectedLocations.join(', ');
+      document.getElementById('dispatchedLocation').value = selectedLocations.join(', ');
+      // Minimize dropdown after selection
+      document.getElementById('locationDropdown').classList.add('hidden');
+    }
+
+    // Event listeners for category buttons
+    document.getElementById('ambientButton').addEventListener('click', () => showLocationDropdown('Ambient'));
+    document.getElementById('chillerButton').addEventListener('click', () => showLocationDropdown('Chiller'));
+    document.getElementById('frozenButton').addEventListener('click', () => showLocationDropdown('Frozen'));
+    document.getElementById('nonHalalButton').addEventListener('click', () => showLocationDropdown('NonHalal'));
+
+    // Event delegation for location options
+    document.getElementById('locationDropdown').addEventListener('click', (event) => {
+      if (event.target.classList.contains('location-option')) {
+        handleLocationSelection(event.target.getAttribute('data-location'));
+      }
+    });
+
+    // Proceed to order recording page
+    document.getElementById('proceedButton').addEventListener('click', function () {
+      const pickingDate = document.getElementById('pickingDate').value;
+      if (!pickingDate) {
+        alert('Please select a date.');
+        return;
+      }
+      currentPickingDate = pickingDate;
+      document.getElementById('dateSelectionPage').classList.add('hidden');
+      document.getElementById('orderRecordingPage').classList.remove('hidden');
+      document.getElementById('pickingDateDisplay').textContent = pickingDate;
+    });
+
+    // Return to home (date selection page)
+    document.getElementById('returnHomeButton').addEventListener('click', function () {
+      document.getElementById('orderRecordingPage').classList.add('hidden');
+      document.getElementById('dateSelectionPage').classList.remove('hidden');
+    });
+
+    // View Orders Page
+    document.getElementById('viewOrdersButton').addEventListener('click', function () {
+      if (!currentPickingDate) {
+        alert('Please select a date first.');
+        return;
+      }
+      document.getElementById('viewPickingDateDisplay').textContent = currentPickingDate;
+      renderViewOrders();
+      document.getElementById('viewOrdersPage').classList.remove('hidden');
+    });
+
+    // Return to home from view orders page
+    document.getElementById('returnHomeFromViewButton').addEventListener('click', function () {
+      document.getElementById('viewOrdersPage').classList.add('hidden');
+    });
+
+    // Handle form submission
+    document.getElementById('orderForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const orderNumber = document.getElementById('orderNumber').value;
+      const timeSlot = document.getElementById('timeSlot').value;
+      const dispatchedLocation = document.getElementById('dispatchedLocation').value;
+      const notes = document.getElementById('notes').value;
+
+      // Create an order object
+      const order = {
+        orderNumber: orderNumber,
+        timeSlot: timeSlot,
+        dispatchedLocation: dispatchedLocation,
+        notes: notes
+      };
+
+      // Retrieve existing orders for the current date
+      if (!savedOrders[currentPickingDate]) {
+        savedOrders[currentPickingDate] = [];
+      }
+      savedOrders[currentPickingDate].push(order);
+
+      // Save the updated list back to localStorage
+      localStorage.setItem('orders', JSON.stringify(savedOrders));
+
+      // Clear the form
+      document.getElementById('orderForm').reset();
+      selectedLocations = [];
+      document.getElementById('selectedLocationsDisplay').textContent = '';
+      document.getElementById('locationDropdown').classList.add('hidden');
+    });
+
+    // Export saved orders to Excel
+    document.getElementById('exportExcelButton').addEventListener('click', function () {
+      const ordersForDate = savedOrders[currentPickingDate] || [];
+      if (ordersForDate.length === 0) {
+        alert('No orders to export!');
+        return;
+      }
+
+      // Convert orders to worksheet
+      const worksheet = XLSX.utils.json_to_sheet(ordersForDate);
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, worksheet, 'Orders');
+
+      // Export to Excel file
+      XLSX.writeFile(workbook, `orders_${currentPickingDate}.xlsx`);
+    });
+
+    // Function to render orders in the view orders page
+    function renderViewOrders() {
+      const tbody = document.querySelector('#viewOrderTable tbody');
+      tbody.innerHTML = ''; // Clear existing rows
+
+      const ordersForDate = savedOrders[currentPickingDate] || [];
+      ordersForDate.forEach((order, index) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${order.orderNumber}</td>
+          <td>${order.timeSlot}</td>
+          <td>${order.dispatchedLocation}</td>
+          <td>${order.notes}</td>
+          <td>
+            <button class="btn btn-danger btn-sm" onclick="deleteOrder(${index})">
+              <i class="fas fa-trash"></i> Delete
+            </button>
+          </td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    // Function to delete an order
+    function deleteOrder(index) {
+      if (confirm('Are you sure you want to delete this order?')) {
+        savedOrders[currentPickingDate].splice(index, 1);
+        localStorage.setItem('orders', JSON.stringify(savedOrders));
+        renderViewOrders();
+      }
+    }
+  </script>
+</body>
+</html>
